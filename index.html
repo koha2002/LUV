@@ -1,96 +1,201 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Lời tỏ tình dễ thương</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
-            min-height: 100vh;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-        .container {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.16);
-            text-align: center;
-            max-width: 340px;
-        }
-        .heart {
-            color: #ff3b3b;
-            font-size: 70px;
-            animation: heartbeat 1s infinite;
-        }
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.15); }
-            50% { transform: scale(1.3); }
-            75% { transform: scale(1.15); }
-        }
-        h1 {
-            font-size: 2rem;
-            margin: 16px 0 8px;
-        }
-        p {
-            font-size: 1.1rem;
-            color: #3b3b3b;
-            margin-bottom: 24px;
-        }
-        button {
-            background: #ff7eb3;
-            color: white;
-            border: none;
-            border-radius: 999px;
-            padding: 12px 30px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background: #ff3b3b;
-        }
-        .answer {
-            display: none;
-            margin-top: 18px;
-            font-size: 1.2rem;
-            color: #ff3b3b;
-            font-weight: bold;
-            animation: fadeIn 1s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Secret Love Confession</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(120deg, #f7797d, #FBD786, #C6FFDD);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Quicksand', Arial, sans-serif;
+      margin: 0;
+    }
+    .box {
+      background: rgba(255,255,255,0.97);
+      border-radius: 30px;
+      box-shadow: 0 8px 32px rgba(255,99,132,0.13);
+      padding: 42px 32px 32px 32px;
+      text-align: center;
+      min-width: 350px;
+      position: relative;
+      z-index: 10;
+    }
+    .heart-main {
+      font-size: 70px;
+      color: #ff347f;
+      animation: heartbeat 1s infinite;
+      margin-bottom: 6px;
+      user-select: none;
+      cursor: pointer;
+      transition: transform 0.18s;
+    }
+    .heart-main:active { transform: scale(1.16); }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.18); }
+      50% { transform: scale(1.32); }
+      75% { transform: scale(1.18); }
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin: 12px 0 5px;
+      background: linear-gradient(90deg,#ff4b2b,#ff416c);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .sub {
+      color: #555;
+      font-size: 1.13rem;
+      margin-bottom: 18px;
+    }
+    .btns {
+      margin: 16px 0 4px 0;
+    }
+    button {
+      background: linear-gradient(90deg,#ff4b2b,#ff416c);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 28px;
+      font-size: 1.03rem;
+      cursor: pointer;
+      margin: 6px 10px 6px 0;
+      box-shadow: 0 4px 12px rgba(255,65,108,0.18);
+      transition: background 0.15s, transform 0.15s;
+    }
+    button:hover {
+      background: linear-gradient(90deg,#fdc8d6,#ff4b2b);
+      color: #ff416c;
+      transform: scale(1.08);
+    }
+    button.no-btn {
+      background: #eee;
+      color: #333;
+    }
+    .result {
+      min-height: 40px;
+      font-size: 1.23rem;
+      margin-top: 18px;
+      color: #f35369;
+      font-weight: bold;
+      display: none;
+      animation: fadeIn 1s;
+    }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+    /* Heart floating animation */
+    .heart-float {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      font-size: 30px;
+      color: #ff4b8b;
+      opacity: 0.95;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatHeart 2.4s linear forwards;
+      user-select: none;
+    }
+    @keyframes floatHeart {
+      0% {
+        transform: translateX(-50%) scale(1) translateY(0);
+        opacity: 0.93;
+      }
+      65% {
+        opacity: 1;
+        transform: translateX(-52%) scale(1.2) translateY(-130px) rotate(-10deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-47%) scale(0.85) translateY(-220px) rotate(12deg);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 450px) {
+      .box { min-width: unset; width: 90vw; padding: 24px 5vw 18px 5vw;}
+      .heart-main {font-size: 48px;}
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="heart">❤️</div>
-        <h1>Tớ thích cậu!</h1>
-        <p>
-            Từ lâu tớ đã muốn nói với cậu điều này.<br>
-            Cậu có đồng ý làm người yêu tớ không?
-        </p>
-        <button onclick="showAnswer(true)">Có 💖</button>
-        <button onclick="showAnswer(false)" style="background:#eee; color:#3b3b3b; margin-left:12px;">Không 😢</button>
-        <div class="answer" id="answer"></div>
+  <div class="box">
+    <div class="heart-main" id="bigHeart" title="Nhấn vào trái tim đi!">💗</div>
+    <h1>Cho tớ hỏi nhỏ này...</h1>
+    <div class="sub">
+      Nếu hôm nay tớ tỏ tình,<br>
+      cậu có đồng ý làm người yêu tớ không? 😳
     </div>
-    <script>
-        function showAnswer(isYes) {
-            var answer = document.getElementById('answer');
-            if(isYes) {
-                answer.innerHTML = "Tuyệt vời! Yêu cậu nhiều lắm 😍";
-            } else {
-                answer.innerHTML = "Buồn quá... Nhưng tớ vẫn luôn quý cậu 🥲";
-            }
-            answer.style.display = "block";
+    <div class="btns">
+      <button onclick="confess(true)">Đồng ý 💖</button>
+      <button class="no-btn" id="noBtn" onclick="confess(false)">Không 😜</button>
+    </div>
+    <div class="result" id="result"></div>
+  </div>
+  <audio id="loveSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_1b2992b8a2.mp3"></audio>
+  <script>
+    // Hiệu ứng thả tim khi click vào trái tim lớn
+    function floatHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart-float';
+      heart.style.left = (50 + (Math.random()-0.5)*18) + '%';
+      heart.style.fontSize = (20+Math.random()*28)+'px';
+      heart.innerHTML = ['💗','💖','💘','💝','💕','💓'][Math.floor(Math.random()*6)];
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 2400);
+    }
+    document.getElementById('bigHeart').onclick = function() {
+      floatHeart();
+      for(let i=0;i<2+Math.random()*3;i++) setTimeout(floatHeart,200+Math.random()*600);
+      document.getElementById('loveSound').currentTime = 0;
+      document.getElementById('loveSound').play();
+    };
+
+    // Xử lý khi bấm chọn
+    let yesMessages = [
+      "Yeee! Tớ hạnh phúc quá nè 😍❤️",
+      "Thật không? Không tin được lun đó, yêu cậu nhiều! 💋",
+      "Chính thức từ hôm nay nha người iu ơi 😘",
+      "Vậy là có đôi có cặp rồi nhéee 💖"
+    ];
+    let noMessages = [
+      "Ơ kìa! Đùa thôi đúng không? 😳",
+      "Không cũng phải thành có nha! Tớ sẽ cố gắng tiếp tục chinh phục cậu 🥲",
+      "Cho tớ thêm cơ hội nữa nhaaa 🥺",
+      "Buồn xíu thôi, nhưng vẫn sẽ thích cậu dài lâu... 💔"
+    ];
+    let isRejecting = false;
+    function confess(isYes) {
+      let result = document.getElementById('result');
+      if(isYes){
+        result.innerHTML = yesMessages[Math.floor(Math.random()*yesMessages.length)];
+        result.style.display = 'block';
+        for(let i=0;i<8;i++) setTimeout(floatHeart,150*i);
+        document.getElementById('loveSound').currentTime = 0;
+        document.getElementById('loveSound').play();
+      } else {
+        // Hiệu ứng "không" chạy sang chỗ khác
+        let noBtn = document.getElementById('noBtn');
+        if(!isRejecting){
+          isRejecting = true;
+          let moveX = 40+Math.random()*70;
+          let moveY = 20+Math.random()*20;
+          let newLeft = noBtn.offsetLeft + (Math.random()>0.5?moveX:-moveX);
+          let newTop = noBtn.offsetTop + (Math.random()>0.5?-moveY:moveY);
+          noBtn.style.position = "relative";
+          noBtn.style.left = newLeft+"px";
+          noBtn.style.top = newTop+"px";
+          setTimeout(()=>{isRejecting=false;},300);
         }
-    </script>
+        result.innerHTML = noMessages[Math.floor(Math.random()*noMessages.length)];
+        result.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>
