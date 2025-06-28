@@ -2,335 +2,256 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Tỏ tình đẹp như mơ</title>
+  <title>Tỏ tình nghệ thuật đẹp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Confetti CDN -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    html,body {
-      min-height: 100vh; margin:0; padding:0; box-sizing: border-box;
-      overflow-x: hidden; background: #1e1338;
-    }
-    body {
-      position: relative;
-      display: flex; align-items: center; justify-content: center;
-      min-height: 100vh;
-    }
-    /* Liquid background */
-    #liquid-bg {
-      position:fixed; left:0;top:0;width:100vw;height:100vh;z-index:0;pointer-events:none;
-      filter: blur(1.3px) brightness(1.11) saturate(1.13);
-      background: #1e1338;
-    }
-    /* Glass box */
+    html,body { height: 100%; margin:0; padding:0; box-sizing:border-box; background:#15112a; }
+    body { min-height:100vh; display:flex;align-items:center;justify-content:center;}
+    #bg { position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0; }
     .lovebox {
-      max-width: 400px;
-      width: 92vw;
-      padding: 40px 20px 35px 20px;
-      border-radius: 40px;
-      background: rgba(255,255,255,0.25);
-      box-shadow: 0 14px 80px 0 #6b5c8e40, 0 0 34px #fff5 inset;
-      backdrop-filter: blur(11px) saturate(120%);
-      -webkit-backdrop-filter: blur(11px) saturate(120%);
-      margin:0 auto;
-      text-align:center;
-      z-index: 2;
       position: relative;
-      animation: popIn 1.1s cubic-bezier(.31,1.53,.61,.87);
+      z-index:2;
+      background: rgba(255,255,255,0.92);
+      border-radius: 30px;
+      padding: 36px 26px 30px 26px;
+      box-shadow: 0 8px 32px #9edbff55, 0 0 32px #ffb3c899 inset;
+      max-width: 370px; width:94vw;
+      text-align:center;
+      margin: 0 auto;
+      backdrop-filter: blur(5px) saturate(112%);
+      border: 1.5px solid #ffdaf3bb;
     }
-    @keyframes popIn {
-      0% {transform:scale(0.7) translateY(80px); opacity:0;}
-      50%{transform:scale(1.06);}
-      100% {transform:scale(1) translateY(0); opacity:1;}
-    }
-    .heartwave {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      display:inline-flex;align-items:center;justify-content:center;
-      background: radial-gradient(circle,#fff6 40%,#fff0 100%);
-      position:relative;
-      margin-bottom: 10px;
-      box-shadow: 0 4px 24px #fff9;
-      cursor: pointer;
-      user-select: none;
-      transition: transform 0.15s;
-      overflow: visible;
-    }
-    .heartwave:active { transform: scale(1.12);}
-    .heart-icon {
-      font-size: 68px;
-      color: #ff3c77;
-      text-shadow: 0 4px 40px #fdd0f2b3, 0 0 24px #fff2;
-      animation: pulse 1.3s infinite;
+    .heart-big {
       font-family: 'Pacifico', cursive;
-      transition: filter 0.2s;
+      font-size: 62px;
+      color: #ff3c6a;
+      text-shadow: 0 2px 16px #fdc8d68a,0 0 24px #fff9;
+      margin-bottom: 5px;
+      animation: heartbeat 1.1s infinite;
+      user-select: none; cursor: pointer;
     }
-    @keyframes pulse {
-      0%,100%{filter:drop-shadow(0 0 0 #ff3c77a3);}
-      35%{filter:drop-shadow(0 0 22px #ff5ea1);}
-      70%{filter:drop-shadow(0 0 8px #fdc8d6);}
+    @keyframes heartbeat {
+      0%,100%{transform:scale(1);}
+      30%{transform:scale(1.18);}
+      60%{transform:scale(1.32);}
     }
     h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 2.1rem;
-      color: #ff5ea1;
-      margin: 15px 0 5px;
-      text-shadow: 0 1px 18px #fff9, 0 0 10px #d9d4ffb3;
-      letter-spacing: 1.2px;
+      font-size: 1.95rem;
+      margin: 14px 0 7px 0;
+      background: linear-gradient(90deg,#ff4b2b,#a1c4fd 85%);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 9px #fff5;
+      letter-spacing: 1.5px;
     }
     .subtitle {
-      font-family: 'Montserrat', Arial, sans-serif;
-      color: #342544;
+      color: #3b3b3b;
       font-size: 1.14rem;
-      margin-bottom: 25px;
+      font-family: 'Montserrat', Arial, sans-serif;
       font-weight: 500;
-      text-shadow: 0 1px 9px #fff5, 0 0 2px #fdc8d6;
-      letter-spacing: 0.15px;
-      line-height: 1.54;
+      margin-bottom: 19px;
+      text-shadow: 0 2px 10px #fff5;
+      letter-spacing: 0.08px;
     }
     .btn-row {
-      margin: 36px 0 10px 0; height:64px; width: 100%; position:relative;
-      display: flex; justify-content: center; align-items: center;
+      margin: 30px 0 6px 0; height:56px; width: 100%; position:relative;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 18px;
     }
-    #yesBtn {
-      background: linear-gradient(90deg,#ff4b2b,#a1c4fd 90%);
-      color: #fff; border: none; border-radius: 999px;
-      padding: 14px 38px;
-      font-size: 1.19rem;
-      font-family: inherit;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 4px 20px #ffbdbd49;
-      filter: drop-shadow(0 0 12px #fdc8d68a);
-      outline: none;
-      z-index: 1;
-      transition: background 0.19s, transform 0.19s, box-shadow 0.16s;
-    }
-    #yesBtn:active {transform:scale(1.08);}
-    #noBtn {
-      background: #fff9;
-      color: #ff3775;
+    button {
+      background: linear-gradient(90deg,#ff4b2b,#a1c4fd);
+      color: #fff;
       border: none;
       border-radius: 999px;
       padding: 12px 30px;
-      font-size: 1.13rem;
+      font-size: 1.11rem;
       font-family: inherit;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 18px #fbe8ee49;
-      filter: drop-shadow(0 0 8px #a1c4fd88);
+      box-shadow: 0 5px 20px #ffbdbd30;
       outline: none;
-      position: absolute;
-      top: 8px; left: 72%; /* sẽ được chỉnh vị trí bằng js */
+      min-width: 110px;
+      transition: background 0.17s, transform 0.13s;
+    }
+    button:active {transform:scale(1.07);}
+    #yesBtn { z-index:2;}
+    #noBtn {
+      background: #f7e9f5;
+      color: #e83c77;
+      z-index: 2;
+      position: relative;
       transition: all 0.24s cubic-bezier(.5,1.45,.55,.84);
-      z-index: 10;
     }
     .result {
-      min-height: 45px;
-      font-size: 1.27rem;
-      margin-top: 35px;
+      min-height: 35px;
+      font-size: 1.19rem;
+      margin-top: 26px;
       color: #ff4b7d;
       font-family: 'Montserrat',sans-serif;
       font-weight: 700;
       display: none;
-      animation: fadeIn 1.14s;
+      animation: fadeIn 1.12s;
       letter-spacing: 1px;
-      text-shadow: 0 1px 10px #fff8,0 0 4px #fdc8d6;
+      text-shadow: 0 1px 10px #fff8,0 0 3px #fdc8d6;
     }
     @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-    /* Responsive */
-    @media (max-width: 520px) {
-      .lovebox{max-width:99vw; padding:10vw 2vw 8vw 2vw;}
-      h1{font-size: 1.27rem;}
-      .heartwave{width:56px;height:56px;}
-      .heart-icon{font-size:35px;}
-      .btn-row{margin:24px 0 6px 0; height:78px;}
-      #yesBtn{font-size:1.03rem; padding:10px 20px;}
-      #noBtn{font-size:1rem; padding:8px 16px; left:65%;}
+    @media (max-width: 540px) {
+      .lovebox{padding:9vw 3vw 9vw 3vw;}
+      h1{font-size:1.27rem;}
+      .btn-row{margin:22px 0 6px 0;}
+      .heart-big{font-size:34px;}
+      button{font-size:1rem;min-width:85px;}
     }
   </style>
 </head>
 <body>
-  <canvas id="liquid-bg"></canvas>
-  <audio id="bgmusic" src="https://cdn.pixabay.com/audio/2023/02/10/audio_12ba16f55d.mp3" loop></audio>
-  <div class="lovebox" id="box">
-    <div class="heartwave" id="bigHeart" title="Chạm vào trái tim!">
-      <span class="heart-icon">💗</span>
-    </div>
-    <h1>Cho tớ hỏi nhỏ này nhé...</h1>
-    <div class="subtitle">
-      Nếu hôm nay tớ tỏ tình,<br>
-      cậu có đồng ý làm người yêu tớ không? 🥹💖
-    </div>
-    <div class="btn-row" id="btnRow">
-      <button id="yesBtn" onclick="confess(true)">Đồng ý 💖</button>
-      <button id="noBtn" onmouseover="moveNoBtn()" ontouchstart="moveNoBtn()">Không đâu 😜</button>
-    </div>
-    <div class="result" id="result"></div>
+<canvas id="bg"></canvas>
+<audio id="bgmusic" src="https://cdn.pixabay.com/audio/2023/02/10/audio_12ba16f55d.mp3" loop></audio>
+<div class="lovebox" id="box">
+  <div class="heart-big" id="bigHeart" title="Chạm vào trái tim!">💗</div>
+  <h1>Cho tớ hỏi nhỏ này nhé...</h1>
+  <div class="subtitle">
+    Nếu hôm nay tớ tỏ tình,<br>
+    cậu có đồng ý làm người yêu tớ không? 🥹💖
   </div>
-  <script>
-    // Nền gradient động liquid nghệ
-    const canvas = document.getElementById('liquid-bg');
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width = window.innerWidth, h = canvas.height = window.innerHeight;
-    function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
+  <div class="btn-row" id="btnRow">
+    <button id="yesBtn" onclick="confess(true)">Đồng ý 💖</button>
+    <button id="noBtn" onmouseover="moveNoBtn()" ontouchstart="moveNoBtn()">Không đâu 😜</button>
+  </div>
+  <div class="result" id="result"></div>
+</div>
+<script>
+  // Nền bokeh blur động đẹp
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = window.innerWidth, h = canvas.height = window.innerHeight;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  let balls = [];
+  for (let i = 0; i < 5; i++) {
+    balls.push({
+      r: 110 + Math.random()*60,
+      x: Math.random()*w,
+      y: Math.random()*h,
+      dx: (Math.random()-0.5)*0.33,
+      dy: (Math.random()-0.5)*0.33,
+      c: ['#fff3','#ffd1df77','#b8e0ff77','#bca4ff66','#fff0ec33'][i%5]
+    });
+  }
+  function drawBG() {
+    ctx.clearRect(0,0,w,h);
+    ctx.globalAlpha=1;
+    ctx.fillStyle="#15112a";
+    ctx.fillRect(0,0,w,h);
+    for(let b of balls) {
+      let grad = ctx.createRadialGradient(b.x,b.y,b.r*0.3,b.x,b.y,b.r);
+      grad.addColorStop(0, b.c);
+      grad.addColorStop(1, "#15112a");
+      ctx.beginPath();
+      ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+      ctx.fillStyle = grad;
+      ctx.globalAlpha=0.91;
+      ctx.fill();
+      b.x += b.dx;
+      b.y += b.dy;
+      if(b.x-b.r<0||b.x+b.r>w) b.dx*=-1;
+      if(b.y-b.r<0||b.y+b.r>h) b.dy*=-1;
     }
-    window.addEventListener('resize', resize);
+    ctx.globalAlpha=1;
+    requestAnimationFrame(drawBG);
+  }
+  drawBG();
 
-    // Thêm nhiều quả bóng màu tạo hiệu ứng liquid
-    let balls = [];
-    for (let i = 0; i < 5; i++) {
-      balls.push({
-        r: 260 + Math.random()*90,
-        x: Math.random()*w,
-        y: Math.random()*h,
-        dx: (Math.random()-0.5)*0.7,
-        dy: (Math.random()-0.5)*0.7,
-        c: ['#ff8ec4','#b8e0ff','#ffdde1','#bca4ff','#fff0ec','#ffe7fa'][i]
-      });
-    }
-    function drawLiquid() {
-      ctx.clearRect(0,0,w,h);
-      for(let b of balls) {
-        let grad = ctx.createRadialGradient(b.x,b.y,b.r*0.2,b.x,b.y,b.r);
-        grad.addColorStop(0, b.c+'f5');
-        grad.addColorStop(1, b.c+'00');
-        ctx.beginPath();
-        ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
-        ctx.fillStyle = grad;
-        ctx.fill();
-        b.x += b.dx;
-        b.y += b.dy;
-        if(b.x-b.r<0 || b.x+b.r>w) b.dx*=-1;
-        if(b.y-b.r<0 || b.y+b.r>h) b.dy*=-1;
-      }
-      requestAnimationFrame(drawLiquid);
-    }
-    drawLiquid();
+  // Nhạc nền tự động
+  setTimeout(()=>{let music=document.getElementById('bgmusic');music.volume=0.19;music.play().catch(()=>{});}, 700);
 
-    // Nhạc nền tự động
+  // Nút "Không đâu" chạy tránh ra xa, KHÔNG ĐÈ lên nút "Đồng ý"
+  function moveNoBtn() {
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const btnRow = document.getElementById('btnRow');
+    let w = btnRow.offsetWidth, h = btnRow.offsetHeight;
+    let y = 0;
+    // Di chuyển sang bên trái hoặc phải cùng 1 hàng, không bao giờ đè lên nút "Đồng ý"
+    if (parseInt(noBtn.style.left) > w/2) {
+      noBtn.style.left = "5px";
+    } else {
+      noBtn.style.left = (w-noBtn.offsetWidth-5) + "px";
+    }
+    noBtn.style.top = (Math.random()*12) + "px";
+  }
+
+  // Tim bay khi bấm tim lớn
+  function floatHeart(x, y) {
+    const heart = document.createElement('div');
+    heart.className = 'heart-big';
+    heart.innerText = ['💗','💖','💘','💝','💕','💓'][Math.floor(Math.random()*6)];
+    heart.style.position = 'fixed';
+    heart.style.left = (x || window.innerWidth/2)+'px';
+    heart.style.top = (y || window.innerHeight/2)+'px';
+    heart.style.fontSize = (28+Math.random()*36)+'px';
+    heart.style.opacity = "0.92";
+    heart.style.pointerEvents = "none";
+    heart.style.transition = "transform 2.1s cubic-bezier(.22,1.45,.48,.93), opacity 2.2s";
+    heart.style.transform = "translate(-50%,0) scale(1)";
+    document.body.appendChild(heart);
     setTimeout(()=>{
-      let music = document.getElementById('bgmusic');
-      music.volume = 0.19;
-      music.play().catch(()=>{});
-    }, 700);
+      heart.style.transform = "translate(-50%,-220px) scale(0.8) rotate("+((Math.random()*50)-25)+"deg)";
+      heart.style.opacity = 0;
+    }, 38);
+    setTimeout(()=>heart.remove(), 2000);
+  }
+  document.getElementById('bigHeart').onclick = function(e) {
+    for(let i=0;i<12;i++) setTimeout(()=>{
+      floatHeart(
+        window.innerWidth*0.3+Math.random()*window.innerWidth*0.4,
+        window.innerHeight*0.4+Math.random()*window.innerHeight*0.2
+      );
+    }, i*70+Math.random()*60);
+  };
 
-    // Nút "Không đâu" chạy quanh hình tròn hộp
-    let angle = Math.random()*Math.PI*2, R = 96;
-    function moveNoBtn() {
-      const noBtn = document.getElementById('noBtn');
-      const btnRow = document.getElementById('btnRow');
-      let w = btnRow.offsetWidth, h = btnRow.offsetHeight;
-      // Tính vị trí theo hình tròn
-      angle += Math.PI/3 + Math.random()*Math.PI/2.1;
-      let x = (w/2) + R * Math.cos(angle) - noBtn.offsetWidth/2;
-      let y = (h/2) + R * Math.sin(angle) - noBtn.offsetHeight/2;
-      // Chặn ra khỏi nút
-      x = Math.max(0, Math.min(w-noBtn.offsetWidth, x));
-      y = Math.max(-4, Math.min(h-noBtn.offsetHeight, y));
-      noBtn.style.left = x+"px";
-      noBtn.style.top = y+"px";
+  // Khi bấm đồng ý: confetti + tim bay
+  function confess(isYes) {
+    let result = document.getElementById('result');
+    let box = document.getElementById('box');
+    if(isYes){
+      result.innerHTML = [
+        "Từ nay mình là một cặp rồi nha! 🥰<br>Yêu cậu thiệt nhiều luôn 💖",
+        "Không tin được lun! Hạnh phúc quá đi mất 😘<br>Bắt đầu chuyện tình thật rực rỡ nào!",
+        "Đồng ý rồi nè, yêu nhau mãi nhé cậu iu 💖"
+      ][Math.floor(Math.random()*3)];
+      result.style.display = 'block';
+      box.style.boxShadow = '0 0 100px 20px #ff8ec4,0 0 100px #b8e0ff inset';
+      setTimeout(()=>{box.style.boxShadow='';},1200);
+      for(let i=0;i<17;i++) setTimeout(()=>{
+        floatHeart(
+          window.innerWidth*0.18+Math.random()*window.innerWidth*0.68,
+          window.innerHeight*0.18+Math.random()*window.innerHeight*0.7
+        );
+      }, i*50+Math.random()*60);
+      // Confetti bắn
+      for(let i=0;i<4;i++) setTimeout(()=>{
+        confetti({
+          particleCount: 72,
+          angle: 90+Math.random()*50-25,
+          spread: 64+Math.random()*28,
+          origin: {x:0.23+0.13*Math.random(), y:0.71+Math.random()*0.04}
+        });
+        confetti({
+          particleCount: 69,
+          angle: 90+Math.random()*50-25,
+          spread: 74+Math.random()*22,
+          origin: {x:0.67+0.11*Math.random(), y:0.71+Math.random()*0.04}
+        });
+      }, i*320);
     }
-
-    // Heart wave effect + bắn tim nhỏ + rung hộp
-    document.getElementById('bigHeart').onclick = function(e) {
-      let box = document.getElementById('box');
-      let center = this.getBoundingClientRect();
-      // Tạo sóng lan
-      let wave = document.createElement('div');
-      wave.style.position = 'fixed';
-      wave.style.left = (center.left + center.width/2) + "px";
-      wave.style.top = (center.top + center.height/2) + "px";
-      wave.style.borderRadius = '50%';
-      wave.style.pointerEvents = 'none';
-      wave.style.zIndex = 1000;
-      wave.style.width = wave.style.height = '40px';
-      wave.style.background = "radial-gradient(circle, #ffe7fa99 0%, #fff0 70%)";
-      wave.style.opacity = "1";
-      wave.style.transition = "all 1.1s cubic-bezier(.3,1.53,.41,0.85)";
-      document.body.appendChild(wave);
-      setTimeout(()=>{
-        wave.style.width = "440px";
-        wave.style.height = "440px";
-        wave.style.marginLeft = "-220px";
-        wave.style.marginTop = "-220px";
-        wave.style.opacity = "0";
-      },10);
-      setTimeout(()=>wave.remove(),1100);
-      // Bắn nhiều tim nhỏ theo sóng
-      for(let i=0;i<12;i++) setTimeout(()=>{
-        floatHeart(center.left+center.width/2+Math.random()*90-45, center.top+center.height/2+Math.random()*80-40);
-      }, i*60+Math.random()*50);
-      // Rung hộp
-      box.style.animation = 'shake 0.24s';
-      setTimeout(()=>box.style.animation='',250);
-    };
-
-    // Tim bay tràn màn khi click "Đồng ý"
-    function floatHeart(x, y) {
-      const heart = document.createElement('div');
-      heart.className = 'heart-icon';
-      heart.innerText = ['💗','💖','💘','💝','💕','💓'][Math.floor(Math.random()*6)];
-      heart.style.position = 'fixed';
-      heart.style.left = (x || window.innerWidth/2)+'px';
-      heart.style.top = (y || window.innerHeight/2)+'px';
-      heart.style.fontSize = (28+Math.random()*40)+'px';
-      heart.style.opacity = "0.94";
-      heart.style.pointerEvents = "none";
-      heart.style.transition = "transform 2.0s cubic-bezier(.22,1.45,.48,.93), opacity 2s";
-      heart.style.transform = "translate(-50%,0) scale(1)";
-      document.body.appendChild(heart);
-      setTimeout(()=>{
-        heart.style.transform = "translate(-50%,-220px) scale(0.8) rotate("+((Math.random()*50)-25)+"deg)";
-        heart.style.opacity = 0;
-      }, 40);
-      setTimeout(()=>heart.remove(), 2000);
-    }
-
-    // Hiệu ứng khi đồng ý
-    function confess(isYes) {
-      let result = document.getElementById('result');
-      let box = document.getElementById('box');
-      if(isYes){
-        // Lời yêu cực chill
-        result.innerHTML = [
-          "Từ nay mình là một cặp rồi nha! 💑<br><span style='color:#ab31b9'>Yêu cậu từ trái tim nè 💖</span>",
-          "Không tin được lun! Hạnh phúc quá đi mất 😘<br>Bắt đầu chuyện tình đáng yêu nhé!",
-          "Đồng ý rồi nè, yêu nhau mãi nhé cậu iu 🥰"
-        ][Math.floor(Math.random()*3)];
-        result.style.display = 'block';
-        // Rung + glow box
-        box.style.boxShadow = '0 0 120px 35px #fca6ec8a, 0 0 120px #e9bfffdf inset';
-        box.style.animation = 'popIn 1.1s cubic-bezier(.31,1.53,.61,.87)';
-        setTimeout(()=>{box.style.boxShadow='';box.style.animation='';}, 1200);
-        // Mưa tim bay
-        for(let i=0;i<22;i++) setTimeout(()=>{
-          floatHeart(
-            window.innerWidth*0.18+Math.random()*window.innerWidth*0.68,
-            window.innerHeight*0.15+Math.random()*window.innerHeight*0.7
-          );
-        }, i*42+Math.random()*60);
-        // Confetti nổ rực rỡ
-        for(let i=0;i<5;i++) setTimeout(()=>{
-          confetti({
-            particleCount: 75+Math.random()*30,
-            angle: 90+Math.random()*50-25,
-            spread: 70+Math.random()*38,
-            origin: {x:0.25+0.18*Math.random(), y:0.78+Math.random()*0.04}
-          });
-          confetti({
-            particleCount: 68+Math.random()*24,
-            angle: 90+Math.random()*50-25,
-            spread: 68+Math.random()*32,
-            origin: {x:0.66+0.13*Math.random(), y:0.78+Math.random()*0.06}
-          });
-        }, i*280);
-      }
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
