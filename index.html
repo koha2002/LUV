@@ -2,35 +2,63 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Tỏ tình nghệ thuật đẹp</title>
+  <title>Em muốn nói với chị...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Confetti CDN -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    html,body { height: 100%; margin:0; padding:0; box-sizing:border-box; background:#15112a; }
-    body { min-height:100vh; display:flex;align-items:center;justify-content:center;}
-    #bg { position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0; }
+    html,body { height: 100%; margin:0; padding:0; }
+    body {
+      min-height: 100vh;
+      font-family: 'Montserrat', Arial, sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(120deg, #f5d4e6, #b9d7f8 80%, #fff0f6 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
     .lovebox {
-      position: relative;
-      z-index:2;
-      background: rgba(255,255,255,0.92);
-      border-radius: 30px;
-      padding: 36px 26px 30px 26px;
-      box-shadow: 0 8px 32px #9edbff55, 0 0 32px #ffb3c899 inset;
-      max-width: 370px; width:94vw;
-      text-align:center;
+      max-width: 380px;
+      width: 94vw;
+      background: rgba(255,255,255,0.98);
+      border-radius: 28px;
+      box-shadow: 0 6px 42px #aecbf966, 0 0 24px #ffe7f6cc inset;
+      padding: 38px 28px 28px 28px;
+      text-align: center;
+      z-index: 2;
       margin: 0 auto;
-      backdrop-filter: blur(5px) saturate(112%);
-      border: 1.5px solid #ffdaf3bb;
+      position: relative;
+      animation: fadeUp 1.1s cubic-bezier(.31,1.53,.61,.87);
+    }
+    @keyframes fadeUp {
+      0% {transform:translateY(40px); opacity:0;}
+      100% {transform:translateY(0); opacity:1;}
+    }
+    .logo {
+      width: 60px; height: 60px;
+      margin-bottom: 15px;
+      border-radius: 18px;
+      object-fit: cover;
+      background: #fff;
+      box-shadow: 0 2px 16px #ffd3ea55;
+      display: block;
+      margin-left:auto; margin-right:auto;
+      animation: logoPop 1.5s;
+    }
+    @keyframes logoPop {
+      0% {transform:scale(0.5);}
+      70% {transform:scale(1.17);}
+      100% {transform:scale(1);}
     }
     .heart-big {
       font-family: 'Pacifico', cursive;
-      font-size: 62px;
+      font-size: 54px;
       color: #ff3c6a;
-      text-shadow: 0 2px 16px #fdc8d68a,0 0 24px #fff9;
-      margin-bottom: 5px;
-      animation: heartbeat 1.1s infinite;
-      user-select: none; cursor: pointer;
+      text-shadow: 0 2px 16px #ffb3c877,0 0 22px #fff9;
+      margin-bottom: 7px;
+      animation: heartbeat 1.18s infinite;
+      user-select: none;
+      cursor: pointer;
+      display: inline-block;
     }
     @keyframes heartbeat {
       0%,100%{transform:scale(1);}
@@ -39,83 +67,85 @@
     }
     h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 1.95rem;
-      margin: 14px 0 7px 0;
-      background: linear-gradient(90deg,#ff4b2b,#a1c4fd 85%);
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 0 2px 9px #fff5;
-      letter-spacing: 1.5px;
+      font-size: 1.52rem;
+      margin: 13px 0 8px 0;
+      color: #ff3983;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 14px #ffb3c860,0 0 10px #fff4;
+      font-weight: 400;
     }
     .subtitle {
-      color: #3b3b3b;
-      font-size: 1.14rem;
-      font-family: 'Montserrat', Arial, sans-serif;
+      color: #363446;
+      font-size: 1.07rem;
       font-weight: 500;
-      margin-bottom: 19px;
-      text-shadow: 0 2px 10px #fff5;
-      letter-spacing: 0.08px;
+      margin-bottom: 18px;
+      text-shadow: 0 1px 7px #fff5;
+      letter-spacing: 0.05px;
+      font-family: 'Montserrat', Arial, sans-serif;
     }
     .btn-row {
-      margin: 30px 0 6px 0; height:56px; width: 100%; position:relative;
+      margin: 28px 0 8px 0; height:56px; width: 100%; position:relative;
       display: flex; justify-content: space-between; align-items: center;
-      gap: 18px;
+      gap: 14px;
     }
     button {
-      background: linear-gradient(90deg,#ff4b2b,#a1c4fd);
-      color: #fff;
       border: none;
       border-radius: 999px;
       padding: 12px 30px;
-      font-size: 1.11rem;
+      font-size: 1.12rem;
       font-family: inherit;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 5px 20px #ffbdbd30;
       outline: none;
-      min-width: 110px;
-      transition: background 0.17s, transform 0.13s;
+      box-shadow: 0 3px 14px #ffbdbd22;
+      transition: background 0.18s, transform 0.12s;
+      min-width: 108px;
     }
-    button:active {transform:scale(1.07);}
-    #yesBtn { z-index:2;}
+    #yesBtn {
+      background: linear-gradient(90deg,#ff4b2b,#a1c4fd);
+      color: #fff;
+    }
+    #yesBtn:active {transform:scale(1.07);}
     #noBtn {
       background: #f7e9f5;
       color: #e83c77;
-      z-index: 2;
       position: relative;
-      transition: all 0.24s cubic-bezier(.5,1.45,.55,.84);
+      transition: all 0.21s cubic-bezier(.5,1.45,.55,.84);
+      z-index: 2;
     }
+    #noBtn:active {transform:scale(1.1);}
     .result {
-      min-height: 35px;
-      font-size: 1.19rem;
+      min-height: 36px;
+      font-size: 1.15rem;
       margin-top: 26px;
       color: #ff4b7d;
       font-family: 'Montserrat',sans-serif;
       font-weight: 700;
       display: none;
       animation: fadeIn 1.12s;
-      letter-spacing: 1px;
-      text-shadow: 0 1px 10px #fff8,0 0 3px #fdc8d6;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 10px #fff8,0 0 2px #fdc8d6;
     }
     @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
     @media (max-width: 540px) {
-      .lovebox{padding:9vw 3vw 9vw 3vw;}
-      h1{font-size:1.27rem;}
-      .btn-row{margin:22px 0 6px 0;}
+      .lovebox{padding:11vw 4vw 9vw 4vw;}
+      h1{font-size:1.08rem;}
+      .btn-row{margin:18px 0 7px 0;}
       .heart-big{font-size:34px;}
-      button{font-size:1rem;min-width:85px;}
+      button{font-size:1rem;min-width:84px;}
+      .logo{width:44px;height:44px;}
     }
   </style>
 </head>
 <body>
-<canvas id="bg"></canvas>
 <audio id="bgmusic" src="https://cdn.pixabay.com/audio/2023/02/10/audio_12ba16f55d.mp3" loop></audio>
 <div class="lovebox" id="box">
+  <img class="logo" src="logo.png" alt="Logo"/>
   <div class="heart-big" id="bigHeart" title="Chạm vào trái tim!">💗</div>
-  <h1>Cho tớ hỏi nhỏ này nhé...</h1>
+  <h1>Em muốn nói với chị điều này...</h1>
   <div class="subtitle">
-    Nếu hôm nay tớ tỏ tình,<br>
-    cậu có đồng ý làm người yêu tớ không? 🥹💖
+    Chị ơi, nếu hôm nay em tỏ tình,<br>
+    chị có đồng ý làm người yêu em không? 🥺💖
   </div>
   <div class="btn-row" id="btnRow">
     <button id="yesBtn" onclick="confess(true)">Đồng ý 💖</button>
@@ -124,65 +154,22 @@
   <div class="result" id="result"></div>
 </div>
 <script>
-  // Nền bokeh blur động đẹp
-  const canvas = document.getElementById('bg');
-  const ctx = canvas.getContext('2d');
-  let w = canvas.width = window.innerWidth, h = canvas.height = window.innerHeight;
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  let balls = [];
-  for (let i = 0; i < 5; i++) {
-    balls.push({
-      r: 110 + Math.random()*60,
-      x: Math.random()*w,
-      y: Math.random()*h,
-      dx: (Math.random()-0.5)*0.33,
-      dy: (Math.random()-0.5)*0.33,
-      c: ['#fff3','#ffd1df77','#b8e0ff77','#bca4ff66','#fff0ec33'][i%5]
-    });
-  }
-  function drawBG() {
-    ctx.clearRect(0,0,w,h);
-    ctx.globalAlpha=1;
-    ctx.fillStyle="#15112a";
-    ctx.fillRect(0,0,w,h);
-    for(let b of balls) {
-      let grad = ctx.createRadialGradient(b.x,b.y,b.r*0.3,b.x,b.y,b.r);
-      grad.addColorStop(0, b.c);
-      grad.addColorStop(1, "#15112a");
-      ctx.beginPath();
-      ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
-      ctx.fillStyle = grad;
-      ctx.globalAlpha=0.91;
-      ctx.fill();
-      b.x += b.dx;
-      b.y += b.dy;
-      if(b.x-b.r<0||b.x+b.r>w) b.dx*=-1;
-      if(b.y-b.r<0||b.y+b.r>h) b.dy*=-1;
-    }
-    ctx.globalAlpha=1;
-    requestAnimationFrame(drawBG);
-  }
-  drawBG();
-
   // Nhạc nền tự động
-  setTimeout(()=>{let music=document.getElementById('bgmusic');music.volume=0.19;music.play().catch(()=>{});}, 700);
+  setTimeout(()=>{
+    let music = document.getElementById('bgmusic');
+    music.volume = 0.19;
+    music.play().catch(()=>{});
+  }, 500);
 
-  // Nút "Không đâu" chạy tránh ra xa, KHÔNG ĐÈ lên nút "Đồng ý"
+  // Nút "Không đâu" chạy sang lại (không chồng lên nút đồng ý)
   function moveNoBtn() {
     const noBtn = document.getElementById('noBtn');
-    const yesBtn = document.getElementById('yesBtn');
     const btnRow = document.getElementById('btnRow');
-    let w = btnRow.offsetWidth, h = btnRow.offsetHeight;
-    let y = 0;
-    // Di chuyển sang bên trái hoặc phải cùng 1 hàng, không bao giờ đè lên nút "Đồng ý"
-    if (parseInt(noBtn.style.left) > w/2) {
-      noBtn.style.left = "5px";
+    let w = btnRow.offsetWidth, btnW = noBtn.offsetWidth;
+    if (!noBtn.style.left || parseInt(noBtn.style.left) > w/2) {
+      noBtn.style.left = "0px";
     } else {
-      noBtn.style.left = (w-noBtn.offsetWidth-5) + "px";
+      noBtn.style.left = (w - btnW) + "px";
     }
     noBtn.style.top = (Math.random()*12) + "px";
   }
@@ -195,7 +182,7 @@
     heart.style.position = 'fixed';
     heart.style.left = (x || window.innerWidth/2)+'px';
     heart.style.top = (y || window.innerHeight/2)+'px';
-    heart.style.fontSize = (28+Math.random()*36)+'px';
+    heart.style.fontSize = (22+Math.random()*32)+'px';
     heart.style.opacity = "0.92";
     heart.style.pointerEvents = "none";
     heart.style.transition = "transform 2.1s cubic-bezier(.22,1.45,.48,.93), opacity 2.2s";
@@ -208,12 +195,12 @@
     setTimeout(()=>heart.remove(), 2000);
   }
   document.getElementById('bigHeart').onclick = function(e) {
-    for(let i=0;i<12;i++) setTimeout(()=>{
+    for(let i=0;i<10;i++) setTimeout(()=>{
       floatHeart(
-        window.innerWidth*0.3+Math.random()*window.innerWidth*0.4,
-        window.innerHeight*0.4+Math.random()*window.innerHeight*0.2
+        window.innerWidth*0.28+Math.random()*window.innerWidth*0.44,
+        window.innerHeight*0.35+Math.random()*window.innerHeight*0.2
       );
-    }, i*70+Math.random()*60);
+    }, i*75+Math.random()*60);
   };
 
   // Khi bấm đồng ý: confetti + tim bay
@@ -222,34 +209,34 @@
     let box = document.getElementById('box');
     if(isYes){
       result.innerHTML = [
-        "Từ nay mình là một cặp rồi nha! 🥰<br>Yêu cậu thiệt nhiều luôn 💖",
-        "Không tin được lun! Hạnh phúc quá đi mất 😘<br>Bắt đầu chuyện tình thật rực rỡ nào!",
-        "Đồng ý rồi nè, yêu nhau mãi nhé cậu iu 💖"
+        "Từ nay mình là một cặp rồi nha chị! 🥰<br>Em sẽ yêu thương chị thật nhiều 💖",
+        "Chị đồng ý rồi! Em hạnh phúc quá 😘<br>Mong mình sẽ bên nhau lâu dài nha!",
+        "Cảm ơn chị đã cho em cơ hội này 💗<br>Hãy bắt đầu chuyện tình của tụi mình nha!"
       ][Math.floor(Math.random()*3)];
       result.style.display = 'block';
-      box.style.boxShadow = '0 0 100px 20px #ff8ec4,0 0 100px #b8e0ff inset';
+      box.style.boxShadow = '0 0 100px 24px #ff8ec4,0 0 60px #b8e0ff inset';
       setTimeout(()=>{box.style.boxShadow='';},1200);
-      for(let i=0;i<17;i++) setTimeout(()=>{
+      for(let i=0;i<15;i++) setTimeout(()=>{
         floatHeart(
           window.innerWidth*0.18+Math.random()*window.innerWidth*0.68,
-          window.innerHeight*0.18+Math.random()*window.innerHeight*0.7
+          window.innerHeight*0.25+Math.random()*window.innerHeight*0.65
         );
-      }, i*50+Math.random()*60);
+      }, i*60+Math.random()*60);
       // Confetti bắn
-      for(let i=0;i<4;i++) setTimeout(()=>{
+      for(let i=0;i<3;i++) setTimeout(()=>{
         confetti({
-          particleCount: 72,
+          particleCount: 66,
           angle: 90+Math.random()*50-25,
-          spread: 64+Math.random()*28,
-          origin: {x:0.23+0.13*Math.random(), y:0.71+Math.random()*0.04}
+          spread: 60+Math.random()*26,
+          origin: {x:0.24+0.14*Math.random(), y:0.70+Math.random()*0.04}
         });
         confetti({
-          particleCount: 69,
+          particleCount: 66,
           angle: 90+Math.random()*50-25,
-          spread: 74+Math.random()*22,
-          origin: {x:0.67+0.11*Math.random(), y:0.71+Math.random()*0.04}
+          spread: 60+Math.random()*22,
+          origin: {x:0.68+0.09*Math.random(), y:0.72+Math.random()*0.03}
         });
-      }, i*320);
+      }, i*350);
     }
   }
 </script>
